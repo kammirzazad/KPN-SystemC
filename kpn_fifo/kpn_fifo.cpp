@@ -1,7 +1,7 @@
 /*
  *	kpn_fifo.cpp -- Sample code for modeling producer-consumer pair using KPN model
  *
- *	EE382N.13 Embedded System Design and Modeling
+ *	System-Level Architecture and Modeling Lab
  *	Department of Electrical and Computer Engineering
  *	The University of Texas at Austin 
  *

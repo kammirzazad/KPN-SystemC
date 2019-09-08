@@ -3,7 +3,7 @@
 /*
  *	kahn_process.h -- Base SystemC module for modeling applications using KPN
  *
- *	EE382N.13 Embedded System Design and Modeling
+ *	System-Level Architecture and Modeling Lab
  *	Department of Electrical and Computer Engineering
  *	The University of Texas at Austin 
  *

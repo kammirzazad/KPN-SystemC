@@ -2,7 +2,7 @@
 This repository provides an implementation of Kahn processes [1] in SystemC [2] and two examples that utilize this implementation to model applications as KPN. 
 
 # Design
-The implementation can be found in *kahn_process.h* which defines the abstract SystemC module with same name. Following the SystemC semantics, this class derives from *sc_module* and defines a thread named *main*. The main thread simply calls pure virtual function of *process()* in a while loop whilst keeping track of the current iteration. 
+The implementation can be found in *kahn_process.h* which defines the abstract SystemC module with same name. Following the SystemC semantics, this class derives from *sc_module* and defines a *sc_thread* named *main*. The main thread simply calls pure virtual function of *process()* in a while loop whilst keeping track of the current iteration. 
 
 In SystemC, modules need to communicate with each other through *sc_ports* whose interface is defined by classes derived from *sc_interface* and are connected using classes derived from *sc_channel*. However, to provide a generic implementation, base class does not define any interface or port and it is up to the application developer to define them. *kpn_fifo* folder provides an example of how to define ports with *sc_fifo* interface for producer and consumer processes. Once ports are defined, data can be sent on *out_ports* using *write()* method and received from *in_ports* using *read()* method.
 

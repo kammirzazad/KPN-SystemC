@@ -1,7 +1,7 @@
 /*
  *	kpn_neuralnet.cpp -- Sample code for modeling neural network using KPN model
  *
- *	EE382N.13 Embedded System Design and Modeling
+ *	System-Level Architecture and Modeling Lab
  *	Department of Electrical and Computer Engineering
  *	The University of Texas at Austin 
  *
@@ -18,46 +18,38 @@ using	std::cout;
 using	std::endl;
 typedef std::vector<std::string> strs;
 
-class	image_reader : public sc_module
+class	image_reader : public kahn_process
 {
 	public:
-
-	int	iter;
 
 	strs	images;
 
 	sc_fifo_out<float> out;
-	
-	SC_HAS_PROCESS(image_reader);
 
 	image_reader(sc_module_name name, strs _images)
-	:	sc_module(name),
+	:	kahn_process(name),
 		images(_images)
 	{
-		iter = 0;
-		SC_THREAD(main);
+		cout << "instantiated image_reader" << endl;
 	}
 
-	void	main()
+	void	process() override
 	{
 		float	val = 1.234;
 
-		while(true)
+		for(size_t i=0; i<images.size(); i++)
 		{
-			for(size_t i=0; i<images.size(); i++)
-			{
-				cout << "reading image " << images[i] << " @ iter " << iter++ << endl;
+			cout << "reading image " << images[i] << " @ iter " << iter++ << endl;
 
-				// read images[i] from file
-				// for(val in images[i])
-				// 	out->write(val);
-				out->write(val);
-			}
+			// read images[i] from file
+			// for(val in images[i])
+			// 	out->write(val);
+			out->write(val);
 		}
 	}
 }; 
 
-class	image_writer : public sc_module
+class	image_writer : public kahn_process
 {
 	public:
 
@@ -66,37 +58,31 @@ class	image_writer : public sc_module
 	strs	images;
 
 	sc_fifo_in<float> in;
-	
-	SC_HAS_PROCESS(image_writer);
 
 	image_writer(sc_module_name name, strs _images)
-	:	sc_module(name),
+	:	kahn_prcoess(name),
 		images(_images)
 	{
-		iter = 0;
-		SC_THREAD(main);
+		cout << "instantiated image_writer" << endl;
 	}
 
-	void	main()
+	void	process() override
 	{
 		float	    val;
 		std::string outFN;
 
-		while(true)
+		for(size_t i=0; i<images.size(); i++)
 		{
-			for(size_t i=0; i<images.size(); i++)
-			{
-				// read values from "in"
-				in->read(val);
+			// read values from "in"
+			in->read(val);
 
-				// dump to file
-				outFN = "predicted_";
-				outFN += images[i];
+			// dump to file
+			outFN = "predicted_";
+			outFN += images[i];
 
-				cout << "writing predictions to " << outFN << "  @ iter " << iter++ << endl;
-			}
+			cout << "writing predictions to " << outFN << "  @ iter " << iter++ << endl;
 		}
-	}	
+	}
 };
 
 class	conv_layer : public kahn_process
@@ -240,4 +226,3 @@ int	sc_main(int, char *[])
 	sc_start();
 	return 0;
 }
-
