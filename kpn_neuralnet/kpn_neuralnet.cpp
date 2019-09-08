@@ -60,7 +60,7 @@ class	image_writer : public kahn_process
 	sc_fifo_in<float> in;
 
 	image_writer(sc_module_name name, strs _images)
-	:	kahn_prcoess(name),
+	:	kahn_process(name),
 		images(_images)
 	{
 		cout << "instantiated image_writer" << endl;
