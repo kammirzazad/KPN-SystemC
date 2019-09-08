@@ -22,7 +22,7 @@ This will generate *kpn_fifo.x* that can be run directly. Likewise, similar proc
 *kpn_neuralnet* folder provides an example of how to model a layer-wise pipelined neural network using our implementation. This example defines placeholder *image_reader*, *image_writer*, *conv_layer*, *max_layer* and *detection_layer* classes that are derived from *kahn_process*. This classes are interfaced in top-level module of *kpn_neuralnet* using *sc_fifos* to build a neural network with two convolutional and one maxpool layer.
 
 # References
-[1] Gilles, K. A. H. N. "The semantics of a simple language for parallel programming." Information processing 74 (1974): 471-475.
+[1] Gilles, K. A. H. N. "The semantics of a simple language for parallel programming." Information processing 74 (1974): 471-475.  
 [2] IEEE Standard SystemC Reference Manual (IEEE 16666-2011), https://standards.ieee.org/standard/1666-2011.html
 
 # Contact
