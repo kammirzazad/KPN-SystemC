@@ -23,7 +23,6 @@ This will generate *kpn_fifo.x* that can be run directly. Likewise, similar proc
 
 # References
 [1] Gilles, K. A. H. N. "The semantics of a simple language for parallel programming." Information processing 74 (1974): 471-475.
-
 [2] IEEE Standard SystemC Reference Manual (IEEE 16666-2011), https://standards.ieee.org/standard/1666-2011.html
 
 # Contact
