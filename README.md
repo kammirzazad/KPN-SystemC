@@ -20,7 +20,7 @@ This will generate *kpn_fifo.x* that can be run directly. Likewise, similar proc
 * **kpn_fifo/**: An example of modeling producer-consumer pair as KPN in SystemC
 * **kpn_neuralnet/**: An example of modeling three layer neural network as KPN in SystemC
 * **kahn_process.h**: Base class for implementing Kahn processes in SystemC
-* **tutorial.md**: A short tutorial on SystemC modeling and its semantics
+* **Tutorial.md**: A short tutorial on SystemC modeling and its semantics
 
 # References
 [1] Gilles, K. A. H. N. "The semantics of a simple language for parallel programming." Information processing 74 (1974): 471-475.  
