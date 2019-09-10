@@ -1,5 +1,8 @@
-# KPN_SystemC
+# KPN-SystemC
 This repository provides an implementation of Kahn processes [1] in SystemC [2] and two examples that utilize this implementation to model applications as KPN. 
+
+# Tutorial 
+You can find a brief tutorial on KPN modeling and SystemC semantics in [https://github.com/kammirzazad/KPN-SystemC/blob/master/tutorial.md](Tutorial.md)
 
 # Building and running
 To build *kpn_fifo*, first make sure that *SYSTEMC_HOME* variable is set to the installation folder of SystemC, e.g.
@@ -16,11 +19,6 @@ This will generate *kpn_fifo.x* that can be run directly. Likewise, similar proc
 # Content
 * **kpn_fifo/**: An example of modeling producer-consumer pair as KPN in SystemC
 * **kpn_neuralnet/**: An example of modeling three layer neural network as KPN in SystemC
-* **LICENSE**
-* **Makefile.all**: Base helper makefile provided by SystemC, used by examples (see its header for license)
-* **Makefile.config**: Same as Makefile.all
-* **Makefile.rules**: Same as Makefile.all
-* **README.md**: This README
 * **kahn_process.h**: Base class for implementing Kahn processes in SystemC
 * **tutorial.md**: A short tutorial on SystemC modeling and its semantics
 
