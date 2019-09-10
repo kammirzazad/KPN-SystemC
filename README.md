@@ -2,7 +2,7 @@
 This repository provides an implementation of Kahn processes [1] in SystemC [2] and two examples that utilize this implementation to model applications as KPN. 
 
 # Tutorial 
-You can find a brief tutorial on KPN modeling and SystemC semantics in [https://github.com/kammirzazad/KPN-SystemC/blob/master/tutorial.md](Tutorial.md)
+You can find a brief tutorial on KPN modeling and SystemC semantics in [Tutorial.md](https://github.com/kammirzazad/KPN-SystemC/blob/master/tutorial.md).
 
 # Building and running
 To build *kpn_fifo*, first make sure that *SYSTEMC_HOME* variable is set to the installation folder of SystemC, e.g.
