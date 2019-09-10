@@ -15,7 +15,7 @@ void	main() { while(true) {process(); iter++;} }
 # Ports and Interfaces
 In SystemC, modules need to communicate with each other through *sc_ports* whose interface is defined by classes derived from *sc_interface* and are connected using classes derived from *sc_channel*. However, to provide a generic implementation, our Kahn base class does not define any interface or port and it is up to the application developer to define them. 
 
-*kpn_fifo* folder provides an example of how to define ports with *sc_fifo* interface for producer and consumer processes. It defines output port for producer process as *sc_fifo_out<char>* which is a shortcut for *sc_port< sc_fifo_out_if<char> >*. 
+[*kpn_fifo* folder](https://github.com/kammirzazad/KPN-SystemC/tree/master/kpn_fifo) provides an example of how to define ports with *sc_fifo* interface for producer and consumer processes. It defines output port for producer process as *sc_fifo_out<char>* which is a shortcut for *sc_port< sc_fifo_out_if<char> >*. 
 ```
 sc_fifo_out<char> out;
 ```
@@ -35,7 +35,7 @@ p0->out(*producer_to_consumer);
 ```
 Finally, the top-level module in SystemC can be simulated by instantiating it in *sc_main()* and calling global method of *sc_start()*. Note that, unlike traditional C program, there is **no** *main()* method and execution rather starts from *sc_main()*.
 ```
-int	sc_main(int, char *[])
+int sc_main(int, char *[])
 {
     kpn_fifo kf0("kpn_fifo0");
     sc_start();
@@ -44,4 +44,4 @@ int	sc_main(int, char *[])
 ```
 
 # Modeling Neural Networks
-*kpn_neuralnet* folder provides an example of how to model a layer-wise pipelined neural network using our implementation. This example defines placeholder *image_reader*, *image_writer*, *conv_layer*, *max_layer* and *detection_layer* classes that are derived from *kahn_process*. This classes are interfaced in top-level module of *kpn_neuralnet* using *sc_fifos* to build a neural network with two convolutional and one maxpool layer.
+[*kpn_neuralnet* folder](https://github.com/kammirzazad/KPN-SystemC/tree/master/kpn_neuralnet) provides an example of how to model a layer-wise pipelined neural network using our implementation. This example defines placeholder *image_reader*, *image_writer*, *conv_layer*, *max_layer* and *detection_layer* classes that are derived from *kahn_process*. This classes are interfaced in top-level module of *kpn_neuralnet* using *sc_fifos* to build a neural network with two convolutional and one maxpool layer.
