@@ -13,13 +13,13 @@ void	main() { while(true) {process(); iter++;} }
 ```
 
 # Ports and Interfaces
-In SystemC, modules need to communicate with each other through *sc_ports* whose interface is defined by classes derived from *sc_interface* and are connected using classes derived from *sc_channel*. However, to provide a generic implementation, our Kahn base class does not define any interface or port and it is up to the application developer to define them. 
+In SystemC, modules need to communicate with each other through *sc_ports* whose interface is defined by classes derived from *sc_interface* and are connected using classes derived from *sc_channel*. However, to provide a generic implementation, our Kahn base class does not define any interface or port and it is up to the application developer to define them. Given that Kahn processes communicate with each other through FIFOs, classes derived from *kahn_process* can use FIFO interfaces (*sc_fifo_in_if*, *sc_fifo_out_if*) provided by SystemC to define their ports and connect them.
 
-[*kpn_fifo* folder](https://github.com/kammirzazad/KPN-SystemC/tree/master/kpn_fifo) provides an example of how to define ports with *sc_fifo* interface for producer and consumer processes. It defines output port for producer process as *sc_fifo_out<char>* which is a shortcut for *sc_port< sc_fifo_out_if<char> >*. 
+[*kpn_fifo* folder](https://github.com/kammirzazad/KPN-SystemC/tree/master/kpn_fifo) provides an example of how to define ports for exchanging *char*s with *sc_fifo* interface for producer and consumer processes. It defines output port for producer process as *sc_fifo_out<char>* which is a shortcut for *sc_port< sc_fifo_out_if<char> >*. 
 ```
 sc_fifo_out<char> out;
 ```
-In general case, one could replace *sc_fifo_out_if<char>* with any interface that inherits from *sc_interface*. Input port for consumer is defined similarly. Furthermore, multiple ports can simply be defined as arrays of *sc_port*. Once ports are defined, data can be sent on output ports using *write()* method and received from input ports using *read()* method.
+In general case, one could replace *char* with any data type that application uses. Input port for consumer is defined similarly. Furthermore, multiple ports can simply be defined as arrays of *sc_fifo_out* or *sc_fifo_in*. Once ports are defined, data can be sent on output ports using *write()* method and received from input ports using *read()* method.
 
 # Process Networks
 To build a process network that consists of multiple processes, one needs to instantiate processes and channels that implement the input/output interface of its consumer/producer in a top-level module. For example, in *kpn_fifo*:
@@ -28,7 +28,7 @@ p0 = new producer("producer0");
 c0 = new consumer("consumer0");
 producer_to_consumer = new sc_fifo<char>(1);
 ```
-Consequently, ports of processes need to be initialized with channels.
+Consequently, ports of the processes need to be initialized with channels.
 ```
 c0->in(*producer_to_consumer);
 p0->out(*producer_to_consumer);  
@@ -44,4 +44,4 @@ int sc_main(int, char *[])
 ```
 
 # Modeling Neural Networks
-[*kpn_neuralnet* folder](https://github.com/kammirzazad/KPN-SystemC/tree/master/kpn_neuralnet) provides an example of how to model a layer-wise pipelined neural network using our implementation. This example defines placeholder *image_reader*, *image_writer*, *conv_layer*, *max_layer* and *detection_layer* classes that are derived from *kahn_process*. This classes are interfaced in top-level module of *kpn_neuralnet* using *sc_fifos* to build a neural network with two convolutional and one maxpool layer.
+[*kpn_neuralnet* folder](https://github.com/kammirzazad/KPN-SystemC/tree/master/kpn_neuralnet) provides an example of how to model a layer-wise pipelined neural network using our implementation. This example defines placeholder *image_reader*, *image_writer*, *conv_layer*, *max_layer* and *detection_layer* classes that are derived from *kahn_process*. This classes are interfaced in top-level module of *kpn_neuralnet* using *sc_fifo*s to build a neural network with two convolutional and one maxpool layer.
