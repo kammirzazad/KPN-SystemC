@@ -28,6 +28,7 @@ p0 = new producer("producer0");
 c0 = new consumer("consumer0");
 producer_to_consumer = new sc_fifo<char>(1);
 ```
+Note that constructor of *sc_fifo* takes depth of the buffer as an input argument and, if not specified, will use default depth of 16. In case of *kpn_fifo*, buffer of size one is sufficient and, therefore, *sc_fifo* is instantiated with depth of one.
 Consequently, ports of the processes need to be initialized with channels.
 ```
 c0->in(*producer_to_consumer);
